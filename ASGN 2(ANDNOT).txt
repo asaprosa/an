@@ -1,0 +1,72 @@
+import numpy as np
+arr=np.array([[0,0],[0,1],[1,0],[1,1]])
+print(arr)
+
+wt=np.array([1,-1])
+print(wt)
+type(wt)
+
+dot=arr@wt
+dot
+
+#ANDNOT
+threshold=1
+def andnot_func(dot,threshold):
+    for i in range(0,4):
+        if dot[i]>=threshold:
+            print('1')
+        else:
+            print('0')
+        
+andnot_func(dot,threshold)
+
+#AND
+wt1= np.array([1,1])
+print(wt1)
+dot1= arr@wt1
+print('dot of and :',dot1)
+
+#AND
+threshold=2
+def and_func(dot1,threshold):
+    for i in range(0,4):
+        if dot1[i]>=threshold:
+            print('1')
+        else:
+            print('0')
+        
+and_func(dot1,threshold)
+
+#OR
+wt2=np.array([1,1])
+dot2=arr@wt2
+print(dot2)
+
+#OR
+threshold =1
+def or_func(dot2,threshold):
+    for i in range(0,4):
+        if dot2[i]>=threshold:
+            print('1')
+        else:
+            print('0')
+
+or_func(dot2,threshold)          
+
+#NOT
+arr2=np.array([0,1])
+print('arr2: ',arr2)
+wt3=np.array([-1,1])
+print('wt3: ',wt3)
+dot4=arr2@wt3
+print('dot4: ',dot4)
+
+#NOT
+threshold =2
+def not_func(dot4,threshold):
+    if dot4>=threshold:
+        print('1')
+    else:
+        print('0')
+
+not_func(dot4,threshold)          

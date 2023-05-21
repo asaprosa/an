@@ -1,0 +1,42 @@
+import numpy as np
+#Input pattern
+x1 = np.array([1,1,1,1,1,1]).reshape(6,1)
+x2 = np.array([-1,-1,-1,-1,-1,-1]).reshape(6,1)
+x3 = np.array([1,1,-1,-1,1,1]).reshape(6,1)
+x4 = np.array([-1,-1,1,1,-1,-1]).reshape(6,1)
+
+#output pattern
+
+y1 = np.array([1,1,1]).reshape(3,1)
+y2 = np.array([-1,-1,-1]).reshape(3,1)
+y3 = np.array([1,-1,1]).reshape(3,1)
+y4 = np.array([-1,1,-1]).reshape(3,1)
+
+inputset = np.concatenate((x1,x2,x3,x4), axis = 1)
+outputset = np.concatenate((y1.T,y2.T,y3.T,y4.T), axis = 0)
+print("Input Set:\n",inputset)
+print("Output Set:\n",outputset)
+weight = np.dot(inputset,outputset)
+print("Weight: ",weight)
+
+def testinput(x,weight):
+  y = np.dot(weight.T,x)
+  y[y<0] = -1
+  y[y>=0] =1
+  return np.array(y)
+
+print("Input test pattern 1:\n",testinput(x1,weight))
+print("Input test pattern 2:\n",testinput(x2,weight))
+print("Input test pattern 3:\n",testinput(x3,weight))
+print("Input test pattern 4:\n",testinput(x4,weight))
+
+def testtarget(y,weight):
+  x = np.dot(weight,y)
+  x[x>=0] = 1
+  x[x<0] = -1
+  return np.array(x)
+
+print("Target test pattern 1:\n",testtarget(y1,weight))
+print("Target test pattern 2:\n",testtarget(y2,weight))
+print("Target test pattern 3:\n",testtarget(y3,weight))
+print("Target test pattern 4:\n",testtarget(y4,weight))
